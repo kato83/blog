@@ -1,13 +1,13 @@
-uuid: efb23f0a-f35f-425b-ad94-a990d44dedb5
+uuid: b82a4d8c-1590-4208-8ffc-e8dde784c511
 langcode: ja
 status: true
 dependencies:
   theme:
-    - stark
+    - pulog
 _core:
   default_config_hash: T0wbI6qVdThbbIqXDZFg_1VZ3_ittXBdEoUH7d7ux_E
-id: stark_local_tasks
-theme: stark
+id: pulog_local_tasks
+theme: pulog
 region: content
 weight: -20
 provider: null

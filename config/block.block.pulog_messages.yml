@@ -1,15 +1,15 @@
-uuid: fb1dbf32-d4bf-4dac-94c9-994bf9eadc80
+uuid: 050f7bfd-c758-4c3c-a005-c1f84531664d
 langcode: ja
 status: true
 dependencies:
   module:
     - system
   theme:
-    - stark
+    - pulog
 _core:
   default_config_hash: aeqlWs7HwctZeZC7ADcbxfqehJzBRfZKmuZz3DsH3_4
-id: stark_messages
-theme: stark
+id: pulog_messages
+theme: pulog
 region: highlighted
 weight: 0
 provider: null
