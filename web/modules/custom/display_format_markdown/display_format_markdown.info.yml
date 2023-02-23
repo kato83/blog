@@ -1,0 +1,4 @@
+name: Display format markdown
+type: module
+description: Markdown display render.
+core_version_requirement: ^10
