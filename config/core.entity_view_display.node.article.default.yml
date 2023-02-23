@@ -6,14 +6,20 @@ dependencies:
     - field.field.node.article.field_content
     - node.type.article
   module:
+    - display_format_markdown
     - user
 id: node.article.default
 targetEntityType: node
 bundle: article
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_content:
-    type: basic_string
+    type: markdown_default
     label: above
     settings: {  }
     third_party_settings: {  }
