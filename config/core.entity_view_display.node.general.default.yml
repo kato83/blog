@@ -1,28 +1,26 @@
-uuid: 1ef140fc-6fa4-4288-b6ee-b799be61d109
+uuid: 12893667-9fa0-4190-8808-3acf27e07307
 langcode: ja
 status: true
 dependencies:
   config:
-    - field.field.node.article.field_content
-    - field.field.node.article.field_media
-    - node.type.article
+    - field.field.node.general.field_content
+    - field.field.node.general.field_media
+    - node.type.general
   module:
-    - display_format_markdown
     - user
-id: node.article.default
+id: node.general.default
 targetEntityType: node
-bundle: article
+bundle: general
 mode: default
 content:
   field_content:
-    type: markdown_default
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
-  content_moderation_control: true
   field_media: true
   langcode: true
   links: true

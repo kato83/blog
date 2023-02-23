@@ -1,0 +1,19 @@
+uuid: c415e209-3d32-4c71-b709-b0a1181bbdf1
+langcode: ja
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.general
+id: node.general.field_content
+field_name: field_content
+entity_type: node
+bundle: general
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

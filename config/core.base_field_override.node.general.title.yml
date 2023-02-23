@@ -1,0 +1,18 @@
+uuid: 338b370d-f813-433b-a70e-c6237f625620
+langcode: ja
+status: true
+dependencies:
+  config:
+    - node.type.general
+id: node.general.title
+field_name: title
+entity_type: node
+bundle: general
+label: タイトル
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

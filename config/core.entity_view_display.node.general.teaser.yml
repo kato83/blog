@@ -1,24 +1,19 @@
-uuid: d4741ff7-34cf-4018-bed4-77a752ed854d
+uuid: f21799c6-65b5-4295-b55c-c1aa12dcc1dc
 langcode: ja
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.article.field_content
-    - field.field.node.article.field_media
-    - node.type.article
+    - field.field.node.general.field_content
+    - field.field.node.general.field_media
+    - node.type.general
   module:
     - user
-id: node.article.teaser
+id: node.general.teaser
 targetEntityType: node
-bundle: article
+bundle: general
 mode: teaser
 content:
-  content_moderation_control:
-    settings: {  }
-    third_party_settings: {  }
-    weight: -20
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
