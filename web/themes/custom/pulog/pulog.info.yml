@@ -3,20 +3,9 @@ type: theme
 'base theme': stable9
 starterkit: true
 version: VERSION
+libraries-override:
+  system/base: false
 libraries:
-  - pulog/base
-  - pulog/messages
-  - core/normalize
-libraries-extend:
-  user/drupal.user:
-    - pulog/user
-  core/drupal.dropbutton:
-    - pulog/dropbutton
-  core/drupal.dialog:
-    - pulog/dialog
-  file/drupal.file:
-    - pulog/file
-  core/drupal.progress:
-    - pulog/progress
+  - pulog/common
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.0.3'
