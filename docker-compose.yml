@@ -6,6 +6,8 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
       - ./dump:/docker-entrypoint-initdb.d
+    networks:
+      - drupal
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: 'yes'
       MARIADB_DATABASE: ${MYSQL_DATABASE}
@@ -27,8 +29,16 @@ services:
       - ./composer.lock:/opt/drupal/composer.lock:rw
       - ./.env:/opt/drupal/.env:rw
       # - ./php.ini:/usr/local/etc/php/php.ini:rw
+    networks:
+      - drupal
     command: "apache2-foreground"
     ports:
       - "80:80"
     depends_on:
       - mariadb
+
+networks:
+  drupal:
+    internal: false
+    driver: bridge
+    name: drupal

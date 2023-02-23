@@ -16,7 +16,7 @@ mode: default
 content:
   field_content:
     type: markdown_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 0

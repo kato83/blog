@@ -13,13 +13,9 @@ id: node.general.teaser
 targetEntityType: node
 bundle: general
 mode: teaser
-content:
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
+content: {  }
 hidden:
   field_content: true
   field_media: true
   langcode: true
+  links: true

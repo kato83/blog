@@ -13,18 +13,10 @@ id: node.article.teaser
 targetEntityType: node
 bundle: article
 mode: teaser
-content:
-  content_moderation_control:
-    settings: {  }
-    third_party_settings: {  }
-    weight: -20
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
+content: {  }
 hidden:
+  content_moderation_control: true
   field_content: true
   field_media: true
   langcode: true
+  links: true

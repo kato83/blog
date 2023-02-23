@@ -90,23 +90,14 @@
 
   {% if display_submitted %}
     <footer {{ author_attributes.addClass(['node__submitted', 'node__meta']) }}>
-      {{ author_picture }}
-      <dl>
-        <dt>著者</dt>
-        <dd>
-          {{ author_name }}
-        </dd>
-        <dt>作成日</dt>
-        <dd>{{ node.created.value | format_date('short') }}</dd>
-        <dt>更新日</dt>
-        <dd>{{ node.changed.value | format_date('short') }}</dd>
-      </dl>
-      {{ metadata }}
+      <div>{{ author_picture }}</div>
+      <div>著者: {{ author_name }}</div>
+      <div>作成日: {{ node.created.value | format_date('short') }}</div>
+      <div>更新日: {{ node.changed.value | format_date('short') }}</div>
+      {% if metadata %}
+        <div>{{ metadata }}</div>
+      {% endif %}
     </footer>
   {% endif %}
-
-  <div{{ content_attributes.addClass('node__content') }}>
-    {{ content }}
-  </div>
 
 </article>

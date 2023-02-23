@@ -19,6 +19,7 @@ module:
   mysql: 0
   node: 0
   page_cache: 0
+  page_static_render: 0
   path: 0
   path_alias: 0
   system: 0

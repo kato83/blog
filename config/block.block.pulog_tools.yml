@@ -1,6 +1,6 @@
 uuid: 183e27df-7259-4eef-96d7-7a23a8e503ae
 langcode: ja
-status: true
+status: false
 dependencies:
   config:
     - system.menu.tools
@@ -12,7 +12,7 @@ _core:
   default_config_hash: UL5ZZvI0Lnp3fmVmhIDxvNI9RlMD0sfBIOi9ozr-k5o
 id: pulog_tools
 theme: pulog
-region: sidebar_first
+region: header
 weight: 0
 provider: null
 plugin: 'system_menu_block:tools'

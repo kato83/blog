@@ -4,6 +4,7 @@ namespace Drupal\display_format_markdown\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use League\CommonMark\CommonMarkConverter;
 
 /**
  * Makdown formatter.
@@ -36,10 +37,17 @@ class MarkdownDefaultFormatter extends FormatterBase
   public function viewElements(FieldItemListInterface $items, $langcode)
   {
     $element = [];
+    $converter = new CommonMarkConverter([
+      'html_input' => 'strip',
+      'allow_unsafe_links' => true,
+    ]);
 
     foreach ($items as $delta => $item) {
       // @todo markdown 処理
-      $element[$delta] = ['#markup' => $item->value];
+      $element[$delta] = [
+        '#type' => 'inline_template',
+        '#template' => $converter->convert($item->value)
+      ];
     }
 
     return $element;

@@ -1,0 +1,20 @@
+<?php
+
+function page_static_render_node_update(\Drupal\node\Entity\Node $node)
+{
+  Drupal::logger('page_static_render')->info($node->get('moderation_state')->getString());
+  /** @var Drupal\Core\Entity\EntityTypeManager */
+  $manager = \Drupal::service('entity_type.manager');
+  $builder = $manager->getViewBuilder('node');
+  $build = $builder->view($node, 'full');
+  $html = \Drupal::service('renderer')->renderPlain($build);
+  Drupal::logger('page_static_render')->info(Drupal\Component\Utility\Html::escape($html));
+
+  $client = \Drupal::httpClient();
+  try {
+    $response = $client->request('GET', "http://127.0.0.1/node/" . $node->id(), []);
+  } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    throw new \Exception($e->getMessage());
+  }
+  Drupal::logger('page_static_render')->info(Drupal\Component\Utility\Html::escape($response->getBody()));
+}

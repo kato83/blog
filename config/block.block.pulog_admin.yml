@@ -1,6 +1,6 @@
 uuid: 890add5d-68d8-4ce1-9bdf-398efd080704
 langcode: ja
-status: true
+status: false
 dependencies:
   config:
     - system.menu.admin
@@ -12,7 +12,7 @@ _core:
   default_config_hash: 5MfnyzXbzrDa_OJuFfZfpiBYkMiuRp4mk4GM7HYc8eM
 id: pulog_admin
 theme: pulog
-region: sidebar_first
+region: header
 weight: 1
 provider: null
 plugin: 'system_menu_block:admin'

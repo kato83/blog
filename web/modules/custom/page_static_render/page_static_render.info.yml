@@ -1,0 +1,4 @@
+name: Page static render
+type: module
+description: Static html render.
+core_version_requirement: ^10
