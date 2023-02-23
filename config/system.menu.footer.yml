@@ -1,0 +1,10 @@
+uuid: 05159c35-8b20-4ccd-958a-aa53c082ce64
+langcode: ja
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7yrlW5z9zdg2eBucB2GPqXKSMQfH9lSRSO4DbWF7AFc
+id: footer
+label: フッター
+description: サイト情報のリンク
+locked: true

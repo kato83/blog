@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: 'yes'
+      MARIADB_DATABASE: ${MYSQL_DATABASE}
+      MARIADB_USER: ${MYSQL_USER}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+  drupal:
+    build:
+      context: ./
+      args:
+        USER_ID: ${DOCKER_UID}
+        GROUP_ID: ${DOCKER_GID}
+    volumes:
+      - ./web/themes:/var/www/html/themes
+      - ./web/modules:/var/www/html/modules
+      - ./web/sites:/var/www/html/sites
+      - ./config:/opt/drupal/config
+      - ./etc:/opt/drupal/etc
+      - ./composer.json:/opt/drupal/composer.json:rw
+      - ./composer.lock:/opt/drupal/composer.lock:rw
+      - ./.env:/opt/drupal/.env:rw
+      # - ./php.ini:/usr/local/etc/php/php.ini:rw
+    command: "apache2-foreground"
+    ports:
+      - "80:80"
+    depends_on:
+      - mariadb

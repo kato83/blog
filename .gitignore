@@ -1,0 +1,9 @@
+vendor/
+web/core/
+web/*.*
+web/sites/*/settings.local.php
+.env
+mysql/
+dump/
+web/sites/*/files/
+web/profiles/

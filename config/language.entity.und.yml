@@ -1,0 +1,11 @@
+uuid: 962d9eb9-400a-49b8-9b9d-237531e8e6e9
+langcode: ja
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: eNX6lLCKDaY83nCMh20My---y03KbiFlv802DKCCpvg
+id: und
+label: 未指定
+direction: ltr
+weight: 2
+locked: true

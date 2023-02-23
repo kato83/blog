@@ -1,0 +1,14 @@
+uuid: ec0539b5-f89f-4437-82ba-8c40cff2d003
+langcode: ja
+status: true
+dependencies:
+  module:
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 匿名ユーザー
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
