@@ -1,0 +1,7 @@
+page_static_render.my_page:
+  path: '_page_static_render'
+  defaults:
+    _controller: '\Drupal\page_static_render\Controller\PageStaticRenderController::page'
+    _title: '{{ title }}'
+  requirements:
+    _permission: 'access content'

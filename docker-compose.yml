@@ -24,6 +24,7 @@ services:
       - ./web/modules:/var/www/html/modules
       - ./web/sites:/var/www/html/sites
       - ./config:/opt/drupal/config
+      - ./deployment:/opt/drupal/html
       - ./etc:/opt/drupal/etc
       - ./composer.json:/opt/drupal/composer.json:rw
       - ./composer.lock:/opt/drupal/composer.lock:rw

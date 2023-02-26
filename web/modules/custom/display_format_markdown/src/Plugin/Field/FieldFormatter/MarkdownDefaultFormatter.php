@@ -2,9 +2,12 @@
 
 namespace Drupal\display_format_markdown\Plugin\Field\FieldFormatter;
 
+use Drupal\display_format_markdown\MarkdownMediaIntegration;
 use Drupal\Core\Field\FormatterBase;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use Drupal\Core\Field\FieldItemListInterface;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Environment\Environment;
 
 /**
  * Makdown formatter.
@@ -37,10 +40,14 @@ class MarkdownDefaultFormatter extends FormatterBase
   public function viewElements(FieldItemListInterface $items, $langcode)
   {
     $element = [];
-    $converter = new CommonMarkConverter([
-      'html_input' => 'strip',
+    $environment = new Environment([
+      // 'html_input' => 'escape',
+      'html_input' => 'allow',
       'allow_unsafe_links' => true,
     ]);
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $environment->addInlineParser(new MarkdownMediaIntegration());
+    $converter =  new MarkdownConverter($environment);
 
     foreach ($items as $delta => $item) {
       // @todo markdown 処理

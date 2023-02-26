@@ -2,6 +2,8 @@ uuid: 56af93ce-ec87-4b99-8414-2784cbfeda94
 langcode: ja
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - pulog
 _core:
@@ -17,4 +19,8 @@ settings:
   label: ページのタイトル
   label_display: '0'
   provider: core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /_page_static_render

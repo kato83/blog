@@ -1,20 +1,49 @@
 <?php
 
-function page_static_render_node_update(\Drupal\node\Entity\Node $node)
-{
-  Drupal::logger('page_static_render')->info($node->get('moderation_state')->getString());
-  /** @var Drupal\Core\Entity\EntityTypeManager */
-  $manager = \Drupal::service('entity_type.manager');
-  $builder = $manager->getViewBuilder('node');
-  $build = $builder->view($node, 'full');
-  $html = \Drupal::service('renderer')->renderPlain($build);
-  Drupal::logger('page_static_render')->info(Drupal\Component\Utility\Html::escape($html));
+use \Drupal\node\Entity\Node;
 
-  $client = \Drupal::httpClient();
-  try {
-    $response = $client->request('GET', "http://127.0.0.1/node/" . $node->id(), []);
-  } catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    throw new \Exception($e->getMessage());
+// @todo path move pattern
+
+/**
+ * implements Create Node
+ */
+function page_static_render_node_insert(Node $node)
+{
+  $logger = \Drupal::logger('page_static_render');
+  $moderation_state = $node->get('moderation_state')->getString();
+  $logger->info("moderation_state: $moderation_state");
+
+  if ($moderation_state === 'unpublish') {
+    page_static_render_node_delete($node);
+    return;
   }
-  Drupal::logger('page_static_render')->info(Drupal\Component\Utility\Html::escape($response->getBody()));
+
+  if ($moderation_state === 'published') {
+    $id = $node->id();
+    $logger->info("publish page: $id");
+    $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
+    if (!file_exists("/opt/drupal/html$alias")) mkdir("/opt/drupal/html$alias", 0775, true);
+    exec("curl -H 'Host: www.pu10g.com' \"http://127.0.0.1/node/$id\" -o \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
+    return;
+  }
+}
+
+/**
+ * implements Delete Node
+ */
+function page_static_render_node_delete(Node $node)
+{
+  $logger = \Drupal::logger('page_static_render');
+  $id = $node->id();
+  $logger->info("delete page: $id");
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
+  exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
+}
+
+/**
+ * implements Create Node
+ */
+function page_static_render_node_update(Node $node)
+{
+  page_static_render_node_insert($node);
 }
