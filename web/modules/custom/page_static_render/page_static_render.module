@@ -1,8 +1,25 @@
 <?php
 
 use \Drupal\node\Entity\Node;
+use \Drupal\path_alias\Entity\PathAlias;
 
-// @todo path move pattern
+/**
+ * implements PathAlias move
+ */
+function page_static_render_path_alias_presave(PathAlias $path)
+{
+  $logger = \Drupal::logger('page_static_render');
+  $result = \Drupal::entityQuery('path_alias')
+    ->accessCheck(true)
+    ->condition('path', $path->getPath())
+    ->execute();
+  $path_alias = PathAlias::loadMultiple($result);
+  if (!empty($path_alias)) {
+    $alias = array_values($path_alias)[0]->getAlias();
+    $logger->info("delete page: $alias");
+    exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
+  }
+}
 
 /**
  * implements Create Node
