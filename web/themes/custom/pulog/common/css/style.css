@@ -95,3 +95,7 @@ article.node code, article.node pre {
   border-radius: .25rem;
   color: #fafafa;
 }
+
+article.node pre {
+  overflow-x: scroll;
+}
