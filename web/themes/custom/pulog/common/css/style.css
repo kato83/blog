@@ -88,3 +88,10 @@ header {
   max-width: var(--content-width);
   margin: auto;
 }
+
+article.node code, article.node pre {
+  background: #333;
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  color: #fafafa;
+}
