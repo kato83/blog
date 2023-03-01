@@ -8,9 +8,9 @@ dependencies:
 _core:
   default_config_hash: DaGeEDJMcbbQtgV96AuPeZ-0irMc_Oa6Zzh2U3Kmul8
 id: files
-label: Files
+label: ファイル
 module: file
-description: 'Find and manage files.'
+description: ファイルの検索と管理。
 tag: default
 base_table: file_managed
 base_field: fid
@@ -21,7 +21,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Files
+      title: ファイル
       fields:
         fid:
           id: fid
@@ -33,7 +33,7 @@ display:
           entity_type: file
           entity_field: fid
           plugin_id: field
-          label: Fid
+          label: FID
           exclude: true
           alter:
             alter_text: false
@@ -66,7 +66,7 @@ display:
           entity_type: file
           entity_field: filename
           plugin_id: field
-          label: Name
+          label: 名前
           exclude: false
           alter:
             alter_text: false
@@ -129,7 +129,7 @@ display:
           entity_type: file
           entity_field: filemime
           plugin_id: field
-          label: 'MIME type'
+          label: 'MIME タイプ'
           exclude: false
           alter:
             alter_text: false
@@ -181,7 +181,7 @@ display:
           entity_type: file
           entity_field: filesize
           plugin_id: field
-          label: Size
+          label: サイズ
           exclude: false
           alter:
             alter_text: false
@@ -233,7 +233,7 @@ display:
           entity_type: file
           entity_field: status
           plugin_id: field
-          label: Status
+          label: 状態
           exclude: false
           alter:
             alter_text: false
@@ -277,8 +277,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Temporary
-            format_custom_true: Permanent
+            format_custom_false: 一時的
+            format_custom_true: 恒久的
         created:
           id: created
           table: file_managed
@@ -289,7 +289,7 @@ display:
           entity_type: file
           entity_field: created
           plugin_id: field
-          label: 'Upload date'
+          label: アップロード日時
           exclude: false
           alter:
             alter_text: false
@@ -345,7 +345,7 @@ display:
           entity_type: file
           entity_field: changed
           plugin_id: field
-          label: 'Changed date'
+          label: 更新日
           exclude: false
           alter:
             alter_text: false
@@ -399,7 +399,7 @@ display:
           group_type: sum
           admin_label: ''
           plugin_id: numeric
-          label: 'Used in'
+          label: 利用場所
           exclude: false
           alter:
             alter_text: false
@@ -456,8 +456,8 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
+            next: '次 ›'
+            previous: '‹ 前'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -469,7 +469,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: フィルター
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -490,7 +490,7 @@ display:
           field: area_text_custom
           plugin_id: text_custom
           empty: true
-          content: 'No files available.'
+          content: 利用可能なファイルがありません。
       sorts: {  }
       arguments: {  }
       filters:
@@ -510,7 +510,7 @@ display:
           exposed: true
           expose:
             operator_id: filemime_op
-            label: Filename
+            label: ファイル名
             description: ''
             use_operator: false
             operator: filename_op
@@ -552,7 +552,7 @@ display:
           exposed: true
           expose:
             operator_id: filemime_op
-            label: 'MIME type'
+            label: 'MIME タイプ'
             description: ''
             use_operator: false
             operator: filemime_op
@@ -594,7 +594,7 @@ display:
           exposed: true
           expose:
             operator_id: status_op
-            label: Status
+            label: 状態
             description: ''
             use_operator: false
             operator: status_op
@@ -735,7 +735,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: 'Files overview'
+    display_title: ファイルの概要
     display_plugin: page
     position: 1
     display_options:
@@ -756,7 +756,7 @@ display:
       path: admin/content/files
       menu:
         type: tab
-        title: Files
+        title: ファイル
         description: ''
         weight: 0
         menu_name: admin
@@ -772,11 +772,11 @@ display:
       tags: {  }
   page_2:
     id: page_2
-    display_title: 'File usage'
+    display_title: ファイルの用途
     display_plugin: page
     position: 2
     display_options:
-      title: 'File usage'
+      title: ファイルの用途
       fields:
         entity_label:
           id: entity_label
@@ -786,7 +786,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: entity_label
-          label: Entity
+          label: エンティティ
           exclude: false
           alter:
             alter_text: false
@@ -836,7 +836,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Entity type'
+          label: エンティティタイプ
           exclude: false
           alter:
             alter_text: false
@@ -885,7 +885,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Registering module'
+          label: モジュールの登録
           exclude: false
           alter:
             alter_text: false
@@ -934,7 +934,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: numeric
-          label: 'Use count'
+          label: 使用回数
           exclude: false
           alter:
             alter_text: false
@@ -991,8 +991,8 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
+            next: '次 ›'
+            previous: '‹ 前'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -1019,7 +1019,7 @@ display:
             title_enable: false
             title: All
           title_enable: true
-          title: 'File usage information for {{ arguments.fid }}'
+          title: '{{ arguments.fid }}のファイル使用情報'
           default_argument_type: fixed
           default_argument_options:
             argument: ''

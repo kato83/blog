@@ -11,7 +11,7 @@ dependencies:
 _core:
   default_config_hash: diywn6VdMoQOlDA-xslKdKrDko3SsTKfaK3WBG45UAg
 id: media
-label: Media
+label: メディア
 module: views
 description: 'Find and manage media.'
 tag: ''
@@ -24,7 +24,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Media
+      title: メディア
       fields:
         media_bulk_form:
           id: media_bulk_form
@@ -76,7 +76,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: アクション
           include_exclude: exclude
           selected_actions: {  }
         thumbnail__target_id:
@@ -89,7 +89,7 @@ display:
           entity_type: media
           entity_field: thumbnail
           plugin_id: field
-          label: Thumbnail
+          label: サムネイル
           exclude: false
           alter:
             alter_text: false
@@ -157,7 +157,7 @@ display:
           entity_type: media
           entity_field: media
           plugin_id: field
-          label: 'Media name'
+          label: メディア名
           exclude: false
           alter:
             alter_text: false
@@ -204,7 +204,7 @@ display:
           entity_type: media
           entity_field: bundle
           plugin_id: field
-          label: Type
+          label: タイプ
           exclude: false
           alter:
             alter_text: false
@@ -269,7 +269,7 @@ display:
           entity_type: media
           entity_field: uid
           plugin_id: field
-          label: Author
+          label: 投稿者
           exclude: false
           alter:
             alter_text: false
@@ -334,7 +334,7 @@ display:
           entity_type: media
           entity_field: status
           plugin_id: field
-          label: Status
+          label: 状態
           exclude: false
           alter:
             alter_text: false
@@ -379,8 +379,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Unpublished
-            format_custom_true: Published
+            format_custom_false: 非掲載
+            format_custom_true: 掲載
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -401,7 +401,7 @@ display:
           entity_type: media
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: 更新
           exclude: false
           alter:
             alter_text: false
@@ -467,7 +467,7 @@ display:
           admin_label: ''
           entity_type: media
           plugin_id: entity_operations
-          label: Operations
+          label: 操作
           exclude: false
           alter:
             alter_text: false
@@ -517,10 +517,10 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: '次 ›'
+            previous: '‹ 前'
+            first: '« 最初'
+            last: '最後 »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -533,7 +533,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: フィルター
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -557,7 +557,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'No media available.'
+          content: 利用可能なメディアがありません。
           tokenize: false
       sorts:
         created:
@@ -594,7 +594,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Media name'
+            label: メディア名
             description: ''
             use_operator: false
             operator: name_op
@@ -636,7 +636,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Type
+            label: タイプ
             description: ''
             use_operator: false
             operator: bundle_op
@@ -679,7 +679,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'True'
+            label: 'TRUE'
             description: null
             use_operator: false
             operator: status_op
@@ -693,7 +693,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: 掲載ステータス
             description: ''
             identifier: status
             optional: true
@@ -704,11 +704,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: 掲載
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: 非掲載
                 operator: '='
                 value: '0'
         status_extra:
@@ -766,7 +766,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: 言語
             description: ''
             use_operator: false
             operator: langcode_op
@@ -882,7 +882,7 @@ display:
       tags: {  }
   media_page_list:
     id: media_page_list
-    display_title: Media
+    display_title: メディア
     display_plugin: page
     position: 1
     display_options:
@@ -891,7 +891,7 @@ display:
       path: admin/content/media
       menu:
         type: tab
-        title: Media
+        title: メディア
         description: ''
         weight: 0
         expanded: false

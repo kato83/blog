@@ -16,7 +16,7 @@ dependencies:
 _core:
   default_config_hash: GDIFCs-lTKQIMvaNZ95zofFcqpTxDYakxx02_zZFkmM
 id: media_library
-label: 'Media library'
+label: メディアライブラリー
 module: views
 description: 'Find and manage media.'
 tag: ''
@@ -29,7 +29,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Media
+      title: メディア
       fields:
         media_bulk_form:
           id: media_bulk_form
@@ -81,7 +81,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: アクション
           include_exclude: exclude
           selected_actions: {  }
         rendered_entity:
@@ -156,7 +156,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: 'Apply filters'
+          submit_button: フィルターを適用
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -180,7 +180,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'No media available.'
+          content: 利用可能なメディアがありません。
           tokenize: false
       sorts:
         created:
@@ -195,7 +195,7 @@ display:
           plugin_id: date
           order: DESC
           expose:
-            label: 'Newest first'
+            label: 新しい順
             field_identifier: created
           exposed: true
           granularity: second
@@ -211,7 +211,7 @@ display:
           plugin_id: standard
           order: ASC
           expose:
-            label: 'Name (A-Z)'
+            label: 名前（昇順）
             field_identifier: name
           exposed: true
         name_1:
@@ -226,7 +226,7 @@ display:
           plugin_id: standard
           order: DESC
           expose:
-            label: 'Name (Z-A)'
+            label: 名前（降順）
             field_identifier: name_1
           exposed: true
       filters:
@@ -246,7 +246,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'Publishing status'
+            label: 掲載ステータス
             description: null
             use_operator: false
             operator: status_op
@@ -260,7 +260,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Published
+            label: 掲載
             description: ''
             identifier: status
             optional: true
@@ -271,11 +271,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: 掲載
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: 非掲載
                 operator: '='
                 value: '0'
         name:
@@ -294,7 +294,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: 名前
             description: ''
             use_operator: false
             operator: name_op
@@ -336,7 +336,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: 'Media type'
+            label: メディアタイプ
             description: ''
             use_operator: false
             operator: bundle_op
@@ -353,7 +353,7 @@ display:
             reduce: false
           is_grouped: false
           group_info:
-            label: 'Media type'
+            label: メディアタイプ
             description: null
             identifier: bundle
             optional: true
@@ -421,7 +421,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: 言語
             description: ''
             use_operator: false
             operator: langcode_op
@@ -542,7 +542,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: アクション
           include_exclude: exclude
           selected_actions: {  }
         name:
@@ -623,7 +623,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Edit {{ name }}'
+            text: '{{ name }}を編集'
             make_link: true
             path: ''
             absolute: false
@@ -631,7 +631,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Edit {{ name }}'
+            alt: '{{ name }}を編集'
             rel: ''
             link_class: ''
             prefix: ''
@@ -660,7 +660,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: Edit
+          text: 編集
           output_url_as_text: false
           absolute: false
         delete_media:
@@ -676,7 +676,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Delete {{ name }}'
+            text: '{{ name }}を削除'
             make_link: true
             path: ''
             absolute: false
@@ -684,7 +684,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Delete {{ name }}'
+            alt: '{{ name }}を削除'
             rel: ''
             link_class: ''
             prefix: ''
@@ -713,7 +713,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: Delete
+          text: 削除
           output_url_as_text: false
           absolute: false
         rendered_entity:
@@ -784,7 +784,7 @@ display:
       tags: {  }
   widget:
     id: widget
-    display_title: Widget
+    display_title: ウィジェット
     display_plugin: page
     position: 2
     display_options:
@@ -993,7 +993,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: 名前
             description: ''
             use_operator: false
             operator: name_op
@@ -1079,7 +1079,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Grid
+          label: グリッド
           empty: true
           display_id: widget
         display_link_table:
@@ -1087,7 +1087,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Table
+          label: テーブル
           empty: true
           display_id: widget_table
       rendering_language: '***LANGUAGE_language_interface***'
@@ -1104,7 +1104,7 @@ display:
       tags: {  }
   widget_table:
     id: widget_table
-    display_title: 'Widget (table)'
+    display_title: ウィジェット（表）
     display_plugin: page
     position: 3
     display_options:
@@ -1127,7 +1127,7 @@ display:
           entity_type: media
           entity_field: thumbnail
           plugin_id: field
-          label: Thumbnail
+          label: サムネイル
           type: image
           settings:
             image_link: ''
@@ -1142,7 +1142,7 @@ display:
           entity_type: media
           entity_field: name
           plugin_id: field
-          label: Name
+          label: 名前
           type: string
           settings:
             link_to_entity: false
@@ -1154,7 +1154,7 @@ display:
           entity_type: media
           entity_field: uid
           plugin_id: field
-          label: Author
+          label: 投稿者
           type: entity_reference_label
           settings:
             link: true
@@ -1166,7 +1166,7 @@ display:
           entity_type: media
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: 更新
           type: timestamp
           settings:
             date_format: short
@@ -1275,7 +1275,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: 名前
             description: ''
             use_operator: false
             operator: name_op
@@ -1369,7 +1369,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Grid
+          label: グリッド
           empty: true
           display_id: widget
         display_link_table:
@@ -1377,7 +1377,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Table
+          label: テーブル
           empty: true
           display_id: widget_table
       rendering_language: '***LANGUAGE_language_interface***'

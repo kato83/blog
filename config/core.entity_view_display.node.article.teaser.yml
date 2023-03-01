@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.article.field_category
     - field.field.node.article.field_content
     - field.field.node.article.field_media
     - node.type.article
@@ -16,6 +17,7 @@ mode: teaser
 content: {  }
 hidden:
   content_moderation_control: true
+  field_category: true
   field_content: true
   field_media: true
   langcode: true

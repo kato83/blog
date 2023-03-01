@@ -11,7 +11,7 @@ dependencies:
 _core:
   default_config_hash: upi3_YaKY1MjDALjDauLNPXfHakisQNehC9Dj6icMPQ
 id: moderated_content
-label: 'Moderated content'
+label: モデレート中のコンテンツ
 module: views
 description: 'Find and moderate content.'
 tag: ''
@@ -24,7 +24,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Moderated content'
+      title: モデレート中のコンテンツ
       fields:
         title:
           id: title
@@ -36,7 +36,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Title
+          label: タイトル
           exclude: false
           alter:
             alter_text: false
@@ -101,7 +101,7 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: field
-          label: 'Content type'
+          label: コンテンツタイプ
           exclude: false
           alter:
             alter_text: false
@@ -166,7 +166,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: Author
+          label: 投稿者
           exclude: false
           alter:
             alter_text: false
@@ -230,7 +230,7 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: field
-          label: 'Moderation state'
+          label: モデレーション状態
           exclude: false
           alter:
             alter_text: false
@@ -294,7 +294,7 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: 更新
           exclude: false
           alter:
             alter_text: false
@@ -360,7 +360,7 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: entity_operations
-          label: Operations
+          label: 操作
           exclude: false
           alter:
             alter_text: false
@@ -410,10 +410,10 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: '次 ›'
+            previous: '‹ 前'
+            first: '« 最初'
+            last: '最後 »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -426,7 +426,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: フィルター
           reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -450,7 +450,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'No moderated content available. Only pending versions of content, such as drafts, are listed here.'
+          content: モデレート中のコンテンツはありません。下書きなどの掲載を保留しているバージョンのみがここに表示されます。
           tokenize: false
       sorts: {  }
       arguments: {  }
@@ -510,7 +510,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: タイトル
             description: ''
             use_operator: false
             operator: title_op
@@ -552,7 +552,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Content type'
+            label: コンテンツタイプ
             description: ''
             use_operator: false
             operator: type_op
@@ -596,7 +596,7 @@ display:
           exposed: true
           expose:
             operator_id: moderation_state_op
-            label: 'Moderation state'
+            label: モデレーション状態
             description: ''
             use_operator: false
             operator: moderation_state_op
@@ -639,7 +639,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: 言語
             description: ''
             use_operator: false
             operator: langcode_op
@@ -814,7 +814,7 @@ display:
       tags: {  }
   moderated_content:
     id: moderated_content
-    display_title: 'Moderated content'
+    display_title: モデレート中のコンテンツ
     display_plugin: page
     position: 1
     display_options:

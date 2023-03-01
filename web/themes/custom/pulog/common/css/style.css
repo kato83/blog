@@ -8,6 +8,10 @@ body {
   margin: .5rem;
 }
 
+header {
+  margin-bottom: 2rem;
+}
+
 .visually-hidden {
   visibility: hidden;
   width: 0;
@@ -73,4 +77,14 @@ body {
 
 .node--view-mode-teaser h2 {
   margin-bottom: .5rem;
+}
+
+.field--name-field-category {
+  max-width: var(--content-width);
+  margin: auto;
+}
+
+[data-drupal-messages], [data-drupal-messages-fallback] {
+  max-width: var(--content-width);
+  margin: auto;
 }
