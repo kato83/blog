@@ -3,6 +3,7 @@ version: '3.8'
 services:
   mariadb:
     image: mariadb
+    container_name: drupal_db
     volumes:
       - ./mysql:/var/lib/mysql
       - ./dump:/docker-entrypoint-initdb.d
@@ -19,6 +20,7 @@ services:
       args:
         USER_ID: ${DOCKER_UID}
         GROUP_ID: ${DOCKER_GID}
+    container_name: drupal_web
     volumes:
       - ./web/themes:/var/www/html/themes
       - ./web/modules:/var/www/html/modules
