@@ -44,7 +44,7 @@ class MarkdownMediaIntegration implements InlineParserInterface
     $html = \Drupal::service('renderer')->renderPlain($build);
     \Drupal::logger('page_static_render')->info(\Drupal\Component\Utility\Html::escape($html));
 
-    $inlineContext->getContainer()->appendChild(new HtmlInline($html));
+    $inlineContext->getContainer()->replaceWith(new HtmlInline($html));
     return true;
   }
 }
