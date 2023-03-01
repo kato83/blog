@@ -13,6 +13,7 @@ body {
   width: 0;
   height: 0;
   display: block;
+  margin: 0;
 }
 
 .field__item {
