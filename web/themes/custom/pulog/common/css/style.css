@@ -99,3 +99,7 @@ article.node code, article.node pre {
 article.node pre {
   overflow-x: scroll;
 }
+
+article.node pre code {
+  padding: 0;
+}
