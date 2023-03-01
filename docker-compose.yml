@@ -33,8 +33,6 @@ services:
     networks:
       - drupal
     command: "apache2-foreground"
-    ports:
-      - "80:80"
     depends_on:
       - mariadb
 
