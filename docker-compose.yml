@@ -49,7 +49,7 @@ services:
     environment:
       AWS_CLI_PROFILE: ${AWS_CLI_PROFILE}
       AWS_S3_BUCKET: ${AWS_S3_BUCKET}
-    entrypoint: 'aws s3 sync --profile $AWS_CLI_PROFILE /root/deployment/ s3://${AWS_S3_BUCKET}/'
+    entrypoint: 'aws s3 sync --profile $AWS_CLI_PROFILE /root/deployment/ s3://${AWS_S3_BUCKET}/ --delete'
 
 networks:
   drupal:
