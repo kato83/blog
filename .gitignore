@@ -7,3 +7,4 @@ mysql/
 dump/
 web/sites/*/files/
 web/profiles/
+deployment/
