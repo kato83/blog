@@ -17,7 +17,7 @@ function page_static_render_path_alias_presave(PathAlias $path)
   if (!empty($path_alias)) {
     $alias = array_values($path_alias)[0]->getAlias();
     $logger->info("delete page: $alias");
-    exec("rm -f '/opt/drupal/html$alias/index.html' > /dev/null 2>&1 &");
+    exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
   }
 }
 
@@ -39,8 +39,8 @@ function page_static_render_node_insert(Node $node)
     $id = $node->id();
     $logger->info("publish page: $id");
     $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
-    if (!file_exists("/opt/drupal/html$alias")) mkdir(dirname("/opt/drupal/html$alias"), 0775, true);
-    exec("curl -H 'Host: www.pu10g.com' \"http://127.0.0.1/node/$id\" -o '/opt/drupal/html$alias' > /dev/null 2>&1 &");
+    if (!file_exists("/opt/drupal/html$alias")) mkdir("/opt/drupal/html$alias", 0775, true);
+    exec("curl -H 'Host: www.pu10g.com' \"http://127.0.0.1/node/$id\" -o \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
     return;
   }
 }
@@ -54,7 +54,7 @@ function page_static_render_node_delete(Node $node)
   $id = $node->id();
   $logger->info("delete page: $id");
   $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
-  exec("rm -f \"/opt/drupal/html$alias\" > /dev/null 2>&1 &");
+  exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
 }
 
 /**
