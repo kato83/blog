@@ -30,4 +30,17 @@ class Render extends DrushCommands
     exec("curl -s -H 'Host: www.pu10g.com' \"http://127.0.0.1$url\" -o \"/opt/drupal/html$url/index.html\"");
     $this->output()->writeln("OK");
   }
+
+  /**
+   * ページ生成
+   *
+   * @command page_static_render:front-render
+   * @aliases front-render fr
+   * @usage page_static_render:front-render
+   */
+  public function frontRender()
+  {
+    exec("curl -s -H 'Host: www.pu10g.com' \"http://127.0.0.1/\" -o \"/opt/drupal/html/index.html\"");
+    $this->output()->writeln("OK");
+  }
 }

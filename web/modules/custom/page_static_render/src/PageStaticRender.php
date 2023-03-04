@@ -22,13 +22,13 @@ class PageStaticRender
    */
   public function renderNode(Node $node)
   {
-    exec("/opt/drupal/vendor/bin/drush node-render {$node->id()} > /dev/null 2>&1 &", $std, $code);
+    exec("/opt/drupal/vendor/bin/drush node-render {$node->id()} > /dev/null 2>&1 &");
     $this->renderFrontPage();
   }
 
   public function renderFrontPage()
   {
-    // exec("php -f /opt/drupal/scripts/test.php > /dev/null 2>&1 &");
+    exec("/opt/drupal/vendor/bin/drush front-render > /dev/null 2>&1 &");
   }
 
   /**
@@ -43,17 +43,11 @@ class PageStaticRender
   public function nodeUpsertCheck(Node $node)
   {
     $moderation_state = $node->get('moderation_state')->getString();
-    /** @var \Drupal\page_static_render\PageStaticRender $render */
-    $render = \Drupal::service('page_static_render.render');
-    $logger = \Drupal::logger('page_static_render_node_insert');
 
     if ($moderation_state === 'unpublish') {
-      $logger->info('delete');
-      page_static_render_node_delete($node);
+      $this->deleteByPath($node->toUrl()->toString());
     } else if ($moderation_state === 'published') {
-      /** @var \Drupal\page_static_render\PageStaticRender $render */
-      $render = \Drupal::service('page_static_render.render');
-      $render->renderNode($node);
+      $this->renderNode($node);
     }
   }
 
