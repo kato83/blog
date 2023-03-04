@@ -1,0 +1,8 @@
+services:
+  page_static_render.render:
+    class: Drupal\page_static_render\PageStaticRender
+    arguments: []
+  page_static_render.commands:
+    class: \Drupal\page_static_render\Commands\Render
+    tags:
+      - { name: drush.command }

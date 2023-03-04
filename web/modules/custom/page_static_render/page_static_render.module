@@ -8,17 +8,17 @@ use \Drupal\path_alias\Entity\PathAlias;
  */
 function page_static_render_path_alias_presave(PathAlias $path)
 {
-  $logger = \Drupal::logger('page_static_render');
+  /** @var \Drupal\page_static_render\PageStaticRender $render */
+  $render = \Drupal::service('page_static_render.render');
+
   $result = \Drupal::entityQuery('path_alias')
     ->accessCheck(true)
     ->condition('path', $path->getPath())
     ->execute();
   $path_alias = PathAlias::loadMultiple($result);
-  if (!empty($path_alias)) {
-    $alias = array_values($path_alias)[0]->getAlias();
-    $logger->info("delete page: $alias");
-    exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
-  }
+
+  if (!empty($path_alias))
+    $render->deleteByPath(array_values($path_alias)[0]->getAlias());
 }
 
 /**
@@ -26,35 +26,14 @@ function page_static_render_path_alias_presave(PathAlias $path)
  */
 function page_static_render_node_insert(Node $node)
 {
-  $logger = \Drupal::logger('page_static_render');
   $moderation_state = $node->get('moderation_state')->getString();
-  $logger->info("moderation_state: $moderation_state");
+  /** @var \Drupal\page_static_render\PageStaticRender $render */
+  $render = \Drupal::service('page_static_render.render');
 
-  if ($moderation_state === 'unpublish') {
+  if ($moderation_state === 'unpublish')
     page_static_render_node_delete($node);
-    return;
-  }
-
-  if ($moderation_state === 'published') {
-    $id = $node->id();
-    $logger->info("publish page: $id");
-    $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
-    if (!file_exists("/opt/drupal/html$alias")) mkdir("/opt/drupal/html$alias", 0775, true);
-    exec("curl -H 'Host: www.pu10g.com' \"http://127.0.0.1/node/$id\" -o \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
-    return;
-  }
-}
-
-/**
- * implements Delete Node
- */
-function page_static_render_node_delete(Node $node)
-{
-  $logger = \Drupal::logger('page_static_render');
-  $id = $node->id();
-  $logger->info("delete page: $id");
-  $alias = \Drupal::service('path_alias.manager')->getAliasByPath("/node/$id");
-  exec("rm -f \"/opt/drupal/html$alias/index.html\" > /dev/null 2>&1 &");
+  else if ($moderation_state === 'published')
+    $render->renderNode($node);
 }
 
 /**
@@ -63,4 +42,14 @@ function page_static_render_node_delete(Node $node)
 function page_static_render_node_update(Node $node)
 {
   page_static_render_node_insert($node);
+}
+
+/**
+ * implements Delete Node
+ */
+function page_static_render_node_delete(Node $node)
+{
+  /** @var \Drupal\page_static_render\PageStaticRender $render */
+  $render = \Drupal::service('page_static_render.render');
+  $render->deleteByPath($node->toUrl()->toString());
 }
