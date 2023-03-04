@@ -12,6 +12,8 @@ class PageStaticRender
   function __construct()
   {
     $this->logger = \Drupal::logger('PageStaticRender');
+    // @todo
+    putenv('HOME=/var/www');
   }
 
   /**
@@ -19,7 +21,7 @@ class PageStaticRender
    */
   public function renderNode(Node $node)
   {
-    exec("drush node-render {$node->id()} > /dev/null 2>&1 &");
+    exec("/opt/drupal/vendor/bin/drush node-render {$node->id()} > /dev/null 2>&1 &", $std, $code);
     $this->renderFrontPage();
   }
 
