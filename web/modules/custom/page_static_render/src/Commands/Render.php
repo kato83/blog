@@ -54,7 +54,7 @@ class Render extends DrushCommands
    */
   public function allRender()
   {
-    $nodes = Node::loadMultiple(\Drupal::entityQuery('node')->execute());
+    $nodes = Node::loadMultiple(\Drupal::entityQuery('node')->accessCheck(true)->execute());
     foreach ($nodes as $value) {
       $this->nodeRender($value->id());
     }
