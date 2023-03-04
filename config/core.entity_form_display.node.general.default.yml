@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.general.field_content
     - field.field.node.general.field_media
     - node.type.general
+    - workflows.workflow.workflow
   module:
     - content_moderation
     - media_library

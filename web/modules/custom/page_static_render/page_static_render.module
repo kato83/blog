@@ -10,43 +10,7 @@ function page_static_render_path_alias_presave(PathAlias $path)
 {
   /** @var \Drupal\page_static_render\PageStaticRender $render */
   $render = \Drupal::service('page_static_render.render');
-
-  $result = \Drupal::entityQuery('path_alias')
-    ->accessCheck(true)
-    ->condition('path', $path->getPath())
-    ->execute();
-  $path_alias = PathAlias::loadMultiple($result);
-
-  if (!empty($path_alias))
-    $render->deleteByPath(array_values($path_alias)[0]->getAlias());
-}
-
-/**
- * implements Create Node
- */
-function page_static_render_node_insert(Node $node)
-{
-  $moderation_state = $node->get('moderation_state')->getString();
-  /** @var \Drupal\page_static_render\PageStaticRender $render */
-  $render = \Drupal::service('page_static_render.render');
-  $logger = \Drupal::logger('page_static_render_node_insert');
-
-  if ($moderation_state === 'unpublish') {
-    $logger->info('delete');
-    page_static_render_node_delete($node);
-  } else if ($moderation_state === 'published') {
-      /** @var \Drupal\page_static_render\PageStaticRender $render */
-    $render = \Drupal::service('page_static_render.render');
-    $render->renderNode($node);
-  }
-}
-
-/**
- * implements Create Node
- */
-function page_static_render_node_update(Node $node)
-{
-  page_static_render_node_insert($node);
+  $render->pathAliasMoveCheck($path);
 }
 
 /**
@@ -57,4 +21,24 @@ function page_static_render_node_delete(Node $node)
   /** @var \Drupal\page_static_render\PageStaticRender $render */
   $render = \Drupal::service('page_static_render.render');
   $render->deleteByPath($node->toUrl()->toString());
+}
+
+/**
+ * implements Create Node
+ */
+function page_static_render_node_update(Node $node)
+{
+  /** @var \Drupal\page_static_render\PageStaticRender $render */
+  $render = \Drupal::service('page_static_render.render');
+  $render->nodeUpsertCheck($node);
+}
+
+/**
+ * implements Create Node
+ */
+function page_static_render_node_insert(Node $node)
+{
+  /** @var \Drupal\page_static_render\PageStaticRender $render */
+  $render = \Drupal::service('page_static_render.render');
+  $render->nodeUpsertCheck($node);
 }
