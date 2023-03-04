@@ -48,6 +48,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - ./deployment:/root/deployment
+      - ./deployment.sh:/root/deployment.sh
       - ./web/themes/custom/pulog/common:/root/deployment/themes/custom/pulog/common
     environment:
       AWS_CLI_PROFILE: ${AWS_CLI_PROFILE}

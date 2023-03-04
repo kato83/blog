@@ -103,3 +103,7 @@ article.node pre {
 article.node pre code {
   padding: 0;
 }
+
+article.node img {
+  min-width: 100%;
+}

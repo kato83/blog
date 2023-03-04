@@ -20,6 +20,7 @@
         "drupal/core-project-message": "^10.0",
         "drupal/core-recommended": "^10.0",
         "drush/drush": "^11.5",
+        "ivopetkov/html5-dom-document-php": "^2.0",
         "league/commonmark": "^2.3"
     },
     "conflict": {
