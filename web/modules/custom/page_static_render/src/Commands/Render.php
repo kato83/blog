@@ -2,6 +2,7 @@
 
 namespace Drupal\page_static_render\Commands;
 
+use Drupal\node\Entity\Node;
 use Drush\Commands\DrushCommands;
 
 /**
@@ -41,6 +42,22 @@ class Render extends DrushCommands
   public function frontRender()
   {
     exec("curl -s -H 'Host: www.pu10g.com' \"http://127.0.0.1/\" -o \"/opt/drupal/html/index.html\"");
+    $this->output()->writeln("OK");
+  }
+
+  /**
+   * ページ生成
+   *
+   * @command page_static_render:all-render
+   * @aliases all-render ar
+   * @usage page_static_render:all-render
+   */
+  public function allRender()
+  {
+    $nodes = Node::loadMultiple(\Drupal::entityQuery('node')->execute());
+    foreach ($nodes as $value) {
+      $this->nodeRender($value->id());
+    }
     $this->output()->writeln("OK");
   }
 }
