@@ -1,0 +1,12 @@
+FROM amazon/aws-cli:2.9.12
+
+# install incron
+RUN amazon-linux-extras install epel -y
+RUN yum update -y && yum install -y incron
+
+RUN echo -e "#!/bin/bash\n/usr/local/bin/aws s3 sync --profile \${AWS_CLI_PROFILE} /root/deployment/ s3://\${AWS_S3_BUCKET}/ --delete" > /root/s3-deploy.sh
+RUN echo '/root/deployment IN_MODIFY,IN_CREATE,IN_DELETE /usr/bin/sh /root/s3-deploy.sh' > /etc/incron.d/s3-deployment
+
+ENTRYPOINT [ "/usr/sbin/incrond", "-n" ]
+
+# vim:set ft=dockerfile:
