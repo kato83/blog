@@ -8,7 +8,7 @@ slogan: 'プログラムのブログ 略してプログ'
 page:
   403: ''
   404: ''
-  front: /node
+  front: /front
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: ja

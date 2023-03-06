@@ -8,7 +8,8 @@
 /**
  * Implements hook_preprocess_image_widget().
  */
-function pulog_preprocess_image_widget(array &$variables) {
+function pulog_preprocess_image_widget(array &$variables)
+{
   $data = &$variables['data'];
 
   // This prevents image widget templates from rendering preview container HTML
@@ -18,4 +19,15 @@ function pulog_preprocess_image_widget(array &$variables) {
   if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
     unset($data['preview']);
   }
+}
+
+function pulog_preprocess_pager(&$variables)
+{
+  $element = $variables['pager']['#element'];
+
+  /* @var $pager_manager \Drupal\Core\Pager\PagerManagerInterface */
+  $pager_manager = \Drupal::service('pager.manager');
+  $pager = $pager_manager->getPager($element);
+
+  $variables['last'] = $pager->getTotalPages();
 }
