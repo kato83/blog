@@ -8,6 +8,10 @@ body {
   margin: .5rem;
 }
 
+a, a:visited {
+  color: #008282;
+}
+
 header {
   margin-bottom: 2rem;
 }
@@ -84,12 +88,14 @@ header {
   margin: auto;
 }
 
-[data-drupal-messages], [data-drupal-messages-fallback] {
+[data-drupal-messages],
+[data-drupal-messages-fallback] {
   max-width: var(--content-width);
   margin: auto;
 }
 
-article.node code, article.node pre {
+article.node code,
+article.node pre {
   background: #333;
   padding: .25rem .5rem;
   border-radius: .25rem;
@@ -107,4 +113,27 @@ article.node pre code {
 article.node img {
   max-width: 100%;
   height: auto;
+}
+
+.view-content {
+  margin-bottom: 2rem;
+}
+
+.pager ul,
+.pager li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pager ul {
+  display: flex;
+  gap: 0 .25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.pager a {
+  display: block;
+  padding: .5rem;
 }

@@ -5,6 +5,7 @@ starterkit: true
 version: VERSION
 libraries-override:
   system/base: false
+  views/views.module: false
 libraries:
   - pulog/common
 core_version_requirement: ^10
