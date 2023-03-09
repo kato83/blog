@@ -134,7 +134,11 @@ article.node img {
 }
 
 .pager a {
-  display: block;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: .5rem;
   background: #008282;
   color: #ffffff;
