@@ -21,13 +21,3 @@ function pulog_preprocess_image_widget(array &$variables)
   }
 }
 
-function pulog_preprocess_pager(&$variables)
-{
-  $element = $variables['pager']['#element'];
-
-  /** @var \Drupal\Core\Pager\PagerManagerInterface */
-  $pager_manager = \Drupal::service('pager.manager');
-  $pager = $pager_manager->getPager($element);
-
-  $variables['current'] = $pager->getCurrentPage();
-}
