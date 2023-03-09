@@ -136,4 +136,13 @@ article.node img {
 .pager a {
   display: block;
   padding: .5rem;
+  background: #008282;
+  color: #ffffff;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.pager__item.is-active {
+  display: block;
+  margin: 1rem;
 }

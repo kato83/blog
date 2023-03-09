@@ -23,9 +23,8 @@
       {% endif %}
       {% if items.current %}
         <li class="pager__item is-active">
-          {% trans %}
-            Page {{ items.current }}
-          {% endtrans %}
+          {{ items.current }}
+          {# {% trans %}Page {{ items.current }}{% endtrans %} #}
         </li>
       {% endif %}
       {% if items.next %}
