@@ -25,9 +25,9 @@ function pulog_preprocess_pager(&$variables)
 {
   $element = $variables['pager']['#element'];
 
-  /* @var $pager_manager \Drupal\Core\Pager\PagerManagerInterface */
+  /** @var \Drupal\Core\Pager\PagerManagerInterface */
   $pager_manager = \Drupal::service('pager.manager');
   $pager = $pager_manager->getPager($element);
 
-  $variables['last'] = $pager->getTotalPages();
+  $variables['current'] = $pager->getCurrentPage();
 }
