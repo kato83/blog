@@ -8,3 +8,4 @@ dump/
 web/sites/*/files/
 web/profiles/
 deployment/
+.idea/

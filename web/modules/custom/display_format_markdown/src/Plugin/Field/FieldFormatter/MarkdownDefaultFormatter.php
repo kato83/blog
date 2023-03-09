@@ -6,6 +6,9 @@ use Drupal\display_format_markdown\MarkdownMediaIntegration;
 use Drupal\Core\Field\FormatterBase;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\display_format_markdown\Media;
+use Drupal\display_format_markdown\MediaRenderer;
+use Drupal\display_format_markdown\MediaStartParser;
 use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Environment\Environment;
 
@@ -46,7 +49,8 @@ class MarkdownDefaultFormatter extends FormatterBase
       'allow_unsafe_links' => true,
     ]);
     $environment->addExtension(new CommonMarkCoreExtension());
-    $environment->addInlineParser(new MarkdownMediaIntegration());
+    $environment->addBlockStartParser(new MediaStartParser(), -110);
+    $environment->addRenderer(Media::class, new MediaRenderer(), 0);
     $converter =  new MarkdownConverter($environment);
 
     foreach ($items as $delta => $item) {
