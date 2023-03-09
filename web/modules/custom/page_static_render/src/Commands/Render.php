@@ -103,7 +103,7 @@ class Render extends DrushCommands
     /** @var \IvoPetkov\HTML5DOMElement $item */
     foreach ($items as $item) {
       $num = intval($item->getAttribute('data-page'));
-      $item->setAttribute('href', $num == 1 ? '/index.html' : '/' . $num . '/index.html');
+      $item->setAttribute('href', $num == 1 ? '/' : '/' . $num . '/');
     }
 
     return $document->saveHTML();
