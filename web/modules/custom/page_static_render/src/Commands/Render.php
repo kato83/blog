@@ -88,10 +88,28 @@ class Render extends DrushCommands
       $opts = ['http' => ['method' => 'GET', 'header' => 'Host: www.pu10g.com']];
       $context = stream_context_create($opts);
       $body = file_get_contents("http://127.0.0.1/?page=$i", false, $context);
+      $body = $this->replaceLink($body);
       $body = $this->replacePager($body);
       file_put_contents("/opt/drupal/html$prefix/index.html", $body);
     }
     $this->output()->writeln("OK");
+  }
+
+  private function replaceLink(string $html): string
+  {
+    $document = new HTML5DOMDocument();
+    $document->loadHTML($html);
+    $items = $document->querySelectorAll('a[rel="bookmark"]');
+
+    /** @var \IvoPetkov\HTML5DOMElement $item */
+    foreach ($items as $item) {
+      $href = $item->getAttribute('href');
+      $href = str_ends_with($href, '/') ? $href : ($href . '/');
+
+      $item->setAttribute('href', $href);
+    }
+
+    return $document->saveHTML();
   }
 
   public function replacePager(string $html): string
