@@ -150,3 +150,8 @@ article.node img {
   display: block;
   margin: 1rem;
 }
+
+.article__title {
+  max-width: var(--content-width);
+  margin: 2rem auto;
+}

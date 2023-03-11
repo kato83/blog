@@ -58,7 +58,7 @@
 <main role="main" id="main-content">
 
   <div class="layout-content">
-    {{- page.content -}}
+    {{- page.content | without(node ? 'pulog_page_title') -}}
   </div>{# /.layout-content #}
 
   {% if page.sidebar_first %}
