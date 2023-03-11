@@ -25,7 +25,7 @@ class Render extends DrushCommands
    * @aliases node-render nr
    * @usage page_static_render:node-render
    */
-  public function nodeRender($id = '')
+  public function nodeRender($id = '', $isRenderFront = true)
   {
     $node = \Drupal\node\Entity\Node::load($id);
     $url = $node->toUrl()->toString();
@@ -44,6 +44,8 @@ class Render extends DrushCommands
       $path = $this->deployImage($image);
       $this->output()->writeln("IMAGE PUT: $path");
     }
+
+    if ($isRenderFront) $this->frontRender();
   }
 
   private function deployImage(string $url)
@@ -138,8 +140,9 @@ class Render extends DrushCommands
   {
     $nodes = Node::loadMultiple(\Drupal::entityQuery('node')->accessCheck(true)->execute());
     foreach ($nodes as $value) {
-      $this->nodeRender($value->id());
+      $this->nodeRender($value->id(), false);
     }
+    $this->frontRender();
     $this->output()->writeln("OK");
   }
 }
