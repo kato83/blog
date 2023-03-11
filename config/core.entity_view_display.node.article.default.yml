@@ -21,11 +21,16 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_content:
     type: markdown_default
     label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
     settings: {  }
     third_party_settings: {  }
     weight: 0
@@ -34,4 +39,3 @@ hidden:
   content_moderation_control: true
   field_media: true
   langcode: true
-  links: true

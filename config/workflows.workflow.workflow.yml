@@ -33,6 +33,7 @@ type_settings:
       from:
         - draft
         - published
+        - unpublish
       to: draft
       weight: 0
     publish:
@@ -40,6 +41,7 @@ type_settings:
       from:
         - draft
         - published
+        - unpublish
       to: published
       weight: 1
     unpublish:
