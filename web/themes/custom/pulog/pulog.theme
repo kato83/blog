@@ -21,3 +21,8 @@ function pulog_preprocess_image_widget(array &$variables)
   }
 }
 
+function pulog_preprocess_html(array &$variables)
+{
+  $env = parse_ini_file('../.env');
+  $variables['gtag_id'] = $env['GTAG_ID'];
+}
