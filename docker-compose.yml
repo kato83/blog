@@ -21,6 +21,7 @@ services:
       args:
         USER_ID: ${DOCKER_UID}
         GROUP_ID: ${DOCKER_GID}
+        AWS_CF_ID: ${AWS_CF_ID}
     container_name: drupal_web
     volumes:
       - ./web/themes:/var/www/html/themes
