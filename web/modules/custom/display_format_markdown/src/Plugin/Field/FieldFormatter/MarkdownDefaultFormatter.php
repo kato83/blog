@@ -59,7 +59,7 @@ class MarkdownDefaultFormatter extends FormatterBase
       // @todo markdown 処理
       $element[$delta] = [
         '#type' => 'inline_template',
-        '#template' => $converter->convert($item->value)
+        '#template' => '{% verbatim %}' . $converter->convert($item->value) . '{% endverbatim %}'
       ];
     }
 
