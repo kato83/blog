@@ -68,6 +68,9 @@ class Render extends DrushCommands
     /** @var \IvoPetkov\HTML5DOMElement $img */
     foreach ($imgs as $img) {
       $results[] = $img->getAttribute('src');
+      $src_sets = explode(',', $img->hasAttribute('srcset') ? $img->getAttribute('srcset') : '');
+      $src_sets = array_filter(array_map(fn($str) => explode(' ', $str)[0], $src_sets), 'strlen');
+      $results = array_merge($results, $src_sets);
     }
     return array_filter($results, 'strlen');
   }

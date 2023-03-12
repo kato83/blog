@@ -24,6 +24,7 @@ module:
   page_static_render: 0
   path: 0
   path_alias: 0
+  responsive_image: 0
   rest: 0
   serialization: 0
   system: 0

@@ -1,0 +1,21 @@
+uuid: c00e6e3e-0784-4525-afad-14bbd0b4e1d7
+langcode: ja
+status: true
+dependencies:
+  config:
+    - image.style.pu10g_webp_1x
+    - image.style.pu10g_webp_2x
+id: basic
+label: basic
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 560px) 560px, 100vw'
+      sizes_image_styles:
+        - pu10g_webp_1x
+        - pu10g_webp_2x
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: '_original image_'

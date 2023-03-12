@@ -4,23 +4,21 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.large
     - media.type.image
+    - responsive_image.styles.basic
   module:
-    - image
+    - responsive_image
 id: media.image.default
 targetEntityType: media
 bundle: image
 mode: default
 content:
   field_media_image:
-    type: image
+    type: responsive_image
     label: hidden
     settings:
+      responsive_image_style: basic
       image_link: ''
-      image_style: large
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

@@ -1,0 +1,21 @@
+uuid: 72064316-b516-4fa3-8aa7-7a6cac71eb93
+langcode: ja
+status: true
+dependencies: {  }
+name: pu10g_webp_1x
+label: pu10g-webp-1x
+effects:
+  95d77830-773f-40d9-aeaf-88c97fe7fe85:
+    uuid: 95d77830-773f-40d9-aeaf-88c97fe7fe85
+    id: image_convert
+    weight: 1
+    data:
+      extension: webp
+  51071f50-5213-407f-b290-8b2b812e19f5:
+    uuid: 51071f50-5213-407f-b290-8b2b812e19f5
+    id: image_scale
+    weight: 2
+    data:
+      width: 560
+      height: null
+      upscale: false
