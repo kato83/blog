@@ -51,11 +51,12 @@ class Render extends DrushCommands
   private function deployImage(string $url)
   {
     if (!file_exists(dirname("/opt/drupal/html$url"))) mkdir(dirname("/opt/drupal/html$url"), 0775, true);
-    $url = parse_url($url, PHP_URL_PATH);
 
     $opts = ['http' => ['method' => 'GET', 'header' => 'Host: www.pu10g.com']];
     $context = stream_context_create($opts);
-    file_put_contents("/opt/drupal/html$url", file_get_contents("http://127.0.0.1$url", false, $context));
+    file_put_contents(
+      "/opt/drupal/html" . parse_url($url, PHP_URL_PATH),
+      file_get_contents("http://127.0.0.1$url", false, $context));
     return "/opt/drupal/html$url";
   }
 
