@@ -1,0 +1,10 @@
+.terraform/
+.aws/
+dist/
+node_modules/
+
+.terraform.*
+terraform.tfstate
+terraform.tfstate.*
+.env
+backend.conf

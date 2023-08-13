@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Amazon API Gateway
+  version: 1.0.0
+servers:
+  - url: "{protocol}://{hostname}/{stage}"
+    variables:
+      protocol:
+        default: https
+        enum:
+          - http
+          - https
+      hostname:
+        default: ""
+      stage:
+        default: prod
+paths:
+  /md2html:
+    post:
+      summary: Markdown を HTML へ変換する Lambda の実行
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markdown:
+                  type: string
+            example:
+              markdown: "# This is Heading"
+      responses:
+        "200":
+          description: 変換成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  html:
+                    type: string
+              example:
+                html: <h1><a id=\"this-is-heading\" class=\"anchor\" aria-hidden=\"true\" href=\"#this-is-heading\"></a>This is Heading</h1>\n
+        "400":
+          description: 変換失敗時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Request body is invalid.
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: "${md2html_arn}"
+        httpMethod: POST
+        payloadFormatVersion: "2.0"
+    options:
+      responses:
+        "200":
+          description: Preflightリクエスト
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "mock"
+        requestTemplates:
+          application/json: '{ "statusCode" : 200 }'
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
