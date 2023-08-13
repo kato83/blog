@@ -24,5 +24,5 @@ const entry = name => ({
 
 export default [
   entry('md2html'),
-  // entry('dynamorest')
+  entry('dynamorest')
 ]

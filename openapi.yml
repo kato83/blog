@@ -83,3 +83,96 @@ paths:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
+  /dynamorest:
+    post:
+      summary: コンテンツ新規追加時の処理
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                status:
+                  type: string
+            example:
+              {
+                "title": "コンテンツタイトル",
+                "content": "# 見出し",
+                "status": "PUBLISH"
+              }
+      responses:
+        "200":
+          description: 保存成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: "${dynamorest_arn}"
+        httpMethod: POST
+        payloadFormatVersion: "2.0"
+    delete:
+      summary: コンテンツ削除時の処理
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+            example:
+              {
+                "id": "xxxxx"
+              }
+      responses:
+        "200":
+          description: 削除成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: "${dynamorest_arn}"
+        httpMethod: POST
+        payloadFormatVersion: "2.0"
+    options:
+      responses:
+        "200":
+          description: Preflightリクエスト
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "mock"
+        requestTemplates:
+          application/json: '{ "statusCode" : 200 }'
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST,DELETE'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"

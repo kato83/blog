@@ -37,7 +37,8 @@ data "archive_file" "zip_aws_sdk" {
 resource "aws_api_gateway_rest_api" "blog_api" {
   name = "BlogAPI"
   body = templatefile("./openapi.yml", {
-    md2html_arn = aws_lambda_function.md2html.invoke_arn
+    md2html_arn = aws_lambda_function.md2html.invoke_arn,
+    dynamorest_arn = aws_lambda_function.dynamorest.invoke_arn
   })
 }
 
@@ -77,13 +78,20 @@ resource "aws_lambda_function" "dynamorest" {
   function_name    = "dynamorest"
   role             = aws_iam_role.this.arn
   runtime          = "nodejs18.x"
-  handler          = "zip_dynamorest.handler"
+  handler          = "dynamorest.handler"
   source_code_hash = data.archive_file.zip_dynamorest.output_base64sha256
   filename         = data.archive_file.zip_dynamorest.output_path
   layers = [
     aws_lambda_layer_version.markdown.arn,
     aws_lambda_layer_version.aws_sdk.arn,
   ]
+}
+
+resource "aws_lambda_permission" "lambda_permit2" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.dynamorest.arn
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.blog_api.execution_arn}/*"
 }
 
 
@@ -146,6 +154,7 @@ resource "aws_iam_role_policy" "policy" {
         Effect = "Allow"
         Action = [
           "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
         ]
         Resource = "*"
       }
