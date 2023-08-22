@@ -8,7 +8,7 @@ const entry = name => ({
   input: `src/${name}/${name}.ts`,
   // 出力指定
   output: {
-    dir: `dist/js/${name}`,
+    dir: `../../dist/js/${name}`,
     format: 'cjs',
     exports: "named",
     sourcemap: true,

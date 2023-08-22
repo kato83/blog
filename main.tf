@@ -10,7 +10,7 @@ provider "aws" {
 # Lambda のレイヤー markdown-wasm の zip 圧縮
 data "archive_file" "markdown_wasm_zip" {
   type        = "zip"
-  source_dir  = "markdown"
+  source_dir  = "lambda/layer/markdown-wasm"
   output_path = "dist/mawkdown-wasm.zip"
 }
 
@@ -25,7 +25,7 @@ resource "aws_lambda_layer_version" "markdown" {
 # Lambda のレイヤー aws-sdk zip 圧縮
 data "archive_file" "aws_sdk_zip" {
   type        = "zip"
-  source_dir  = "aws-sdk"
+  source_dir  = "lambda/layer/aws-sdk"
   output_path = "dist/aws-sdk.zip"
 }
 
