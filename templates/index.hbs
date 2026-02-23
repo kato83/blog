@@ -21,7 +21,7 @@
   <main>
     {{#each posts}}
       <article>
-        <h2><a href="{{this.slug}}/">{{this.title}}</a></h2>
+        <h2><a href="{{this.url}}">{{this.title}}</a></h2>
         <p style="color:#666">{{this.date}}</p>
         {{#if this.description}}<p>{{this.description}}</p>{{/if}}
       </article>
