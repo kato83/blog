@@ -11,3 +11,5 @@ image: "https://example.com/og-image.png"
 - GitHub Actionsでビルドして `gh-pages` ブランチへデプロイします
 
 詳細はREADMEを参照してください。
+
+![画像](./150x150.png)

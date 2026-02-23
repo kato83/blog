@@ -5,11 +5,10 @@
 使い方（簡単）:
 
 1. このリポジトリをテンプレートとしてコピーまたはフォークします。
-2. リポジトリの Settings → Pages で、公開方法を `GitHub Actions` に変更します。
-3. リポジトリの Settings → Environments で `github-pages` を作成します。
-4. `site.config.json` を編集して `title`, `description`, `baseUrl` を設定します。
-5. 記事は `content/posts/*.md` に Markdown + YAML frontmatter で追加します。
-6. 変更を `main` ブランチへ push すると GitHub Actions がビルドし、Actions 経由で GitHub Pages に公開されます。
+2. リポジトリの Settings → Pages の `Source` プルダウンを `GitHub Actions` に変更します。
+3. `site.config.json` を編集して `title`, `description`, `baseUrl` を設定します。
+4. 記事は `content/posts/*.md` に Markdown + YAML frontmatter で追加します。
+5. 変更を `main` ブランチへ push すると GitHub Actions がビルドし、Actions 経由で GitHub Pages に公開されます。
 
 補足（Pagesの設定）:
 - このワークフローは `actions/upload-pages-artifact` + `actions/deploy-pages` を使うため、GitHub Pages の公開ソースを `gh-pages` ブランチに切り替える必要はありません。公開方法は「GitHub Actions」経由になります。
