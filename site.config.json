@@ -1,0 +1,5 @@
+{
+  "title": "My Blog",
+  "description": "A simple static blog",
+  "baseUrl": "/blog"
+}

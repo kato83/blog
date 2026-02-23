@@ -1,0 +1,92 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: github-pages
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+      deployments: write
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Deploy to GitHub Pages
+        id: deploy_pages
+        uses: actions/deploy-pages@v4
+
+      - name: Report Pages URL
+        id: report_pages
+        run: |
+          url="${{ steps.deploy_pages.outputs.page_url }}"
+          if [ -z "$url" ]; then
+            echo "site_url=" >> $GITHUB_OUTPUT
+            echo "::warning::Could not determine Pages URL from deploy-pages output"
+          else
+            echo "site_url=$url" >> $GITHUB_OUTPUT
+            echo "::notice::Deployed site: $url"
+          fi
+
+      - name: Create release tag
+        id: create_tag
+        if: ${{ success() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ts=$(date -u +'%Y%m%d-%H%M%SZ')
+          tag="release-${ts}"
+          sha="${GITHUB_SHA}"
+          json=$(printf '{"ref":"refs/tags/%s","sha":"%s"}' "$tag" "$sha")
+          resp=$(curl -s -o /dev/stderr -w "%{http_code}" -X POST -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs -d "$json" ) || true
+          echo "tag_name=$tag" >> $GITHUB_OUTPUT
+          echo "::notice::Created tag $tag (API response code: $resp)"
+
+      - name: Create GitHub Release
+        if: ${{ success() && steps.create_tag.outputs.tag_name != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${{ steps.create_tag.outputs.tag_name }}"
+          site_url="${{ steps.report_pages.outputs.site_url }}"
+          body="Deployed to GitHub Pages: ${site_url}"
+          json=$(jq -n --arg tag "$tag" --arg name "$tag" --arg body "$body" '{tag_name:$tag, name:$name, body:$body, draft:false, prerelease:false}')
+          resp=$(curl -s -w "%{http_code}" -o /tmp/release_resp -X POST -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${GITHUB_REPOSITORY}/releases -d "$json" ) || true
+          code=$resp
+          html_url=$(cat /tmp/release_resp | python -c "import sys,json;print(json.load(sys.stdin).get('html_url',''))")
+          if [ "$code" = "201" ]; then
+            echo "::notice::Created release for $tag -> $html_url"
+          else
+            echo "::warning::Release creation API returned $code; response: $(cat /tmp/release_resp)"
+          fi
