@@ -7,7 +7,7 @@
 1. このリポジトリをテンプレートとしてコピーまたはフォークします。
 2. リポジトリの Settings → Pages の `Source` プルダウンを `GitHub Actions` に変更します。
 3. `site.config.json` を編集して `title`, `description`, `baseUrl` を設定します。
-4. 記事は `content/posts/*.md` に Markdown + YAML frontmatter で追加します。
+4. 記事は `content/**/*.md` に Markdown + YAML frontmatter で追加します。
 5. 変更を `main` ブランチへ push すると GitHub Actions がビルドし、Actions 経由で GitHub Pages に公開されます。
 
 ## 補足

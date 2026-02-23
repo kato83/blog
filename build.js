@@ -7,7 +7,7 @@ const Handlebars = require('handlebars');
 const slugify = require('slugify');
 
 const ROOT = path.resolve(__dirname);
-const CONTENT_DIR = path.join(ROOT, 'content', 'posts');
+const CONTENT_DIR = path.join(ROOT, 'content');
 const OUT_DIR = path.join(ROOT, 'dist');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 
@@ -44,7 +44,7 @@ async function build() {
   const indexTpl = loadTemplate('index.hbs');
 
   if (!fs.existsSync(CONTENT_DIR)) {
-    console.warn('No content found. Create markdown files in content/posts/');
+    console.warn('No content found. Create markdown files in content/');
     return;
   }
 
@@ -89,7 +89,7 @@ async function build() {
 
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // copy non-markdown assets from content/posts to dist (preserve relative paths)
+  // copy non-markdown assets from content to dist (preserve relative paths)
   function walkDir(dir) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     let results = [];
@@ -123,12 +123,12 @@ async function build() {
     fs.ensureDirSync(outDir);
     const html = postTpl({ site, page: post });
     if (post.isReadme) {
-      // content/posts/<dir>/README.md -> dist/<dir>/index.html
+      // content/<dir>/README.md -> dist/<dir>/index.html
       fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
       // set URL to directory URL
       post.url = site.baseUrl ? `${site.baseUrl.replace(/\/$/, '')}/${parentPath.replace(/^\//, '')}/` : `/${parentPath.replace(/^\//, '')}/`;
     } else {
-      // content/posts/<dir>/name.md -> dist/<dir>/name.html
+      // content/<dir>/name.md -> dist/<dir>/name.html
       const fileName = `${post.basename}.html`;
       fs.writeFileSync(path.join(outDir, fileName), html, 'utf8');
       post.url = site.baseUrl ? `${site.baseUrl.replace(/\/$/, '')}/${(parentPath ? parentPath + '/' : '')}${fileName}` : `/${(parentPath ? parentPath + '/' : '')}${fileName}`;
@@ -139,7 +139,7 @@ async function build() {
   const indexHtml = indexTpl({ site, posts });
   fs.writeFileSync(path.join(OUT_DIR, 'index.html'), indexHtml, 'utf8');
 
-  // Note: Do not process repository root README.md; build only processes files under content/posts
+  // Note: Do not process repository root README.md; build only processes files under content
 
   console.log(`Built ${posts.length} posts to ${OUT_DIR}`);
 }
