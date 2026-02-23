@@ -4,7 +4,8 @@
   "description": "A minimal GitHub Pages blog template: markdown + frontmatter -> static HTML via GitHub Actions.",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "preview": "http-server ./dist -p 8000 -c-1"
   },
   "license": "MIT",
   "dependencies": {
@@ -13,6 +14,7 @@
     "handlebars": "^4.7.7",
     "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^9.0.1",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "http-server": "^14.1.1"
   }
 }
