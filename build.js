@@ -11,8 +11,7 @@ const CONTENT_DIR = path.join(ROOT, 'content');
 const OUT_DIR = path.join(ROOT, 'dist');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 
-// allow specifying config file via --config or -c, default to site.config.json
-function parseConfigArg() {
+const configPath = path.resolve(ROOT, (() => {
   const argv = process.argv.slice(2);
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -22,13 +21,13 @@ function parseConfigArg() {
   // also check env var
   if (process.env.SITE_CONFIG) return process.env.SITE_CONFIG;
   return 'site.config.json';
+})());
+
+if (!fs.pathExistsSync(configPath)) {
+  throw new Error(`Not exists "${configPath}". You must be create config file. Example { "title": "My Blog", "description": "A simple static blog", "baseUrl": "/blog" }`);
 }
 
-const configPath = path.resolve(ROOT, parseConfigArg());
-const site = fs.pathExistsSync(configPath)
-  ? fs.readJsonSync(configPath)
-  : { title: 'My Blog', description: '', baseUrl: '' };
-
+const site = fs.readJsonSync(configPath)
 const md = new MarkdownIt({ html: true, linkify: true }).use(markdownItAnchor);
 
 function loadTemplate(name) {
